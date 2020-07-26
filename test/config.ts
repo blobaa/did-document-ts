@@ -2,7 +2,8 @@
 const config = {
     test: {
         keyModule: true,
-        serviceModule: true
+        serviceModule: true,
+        relationshipModule: true
     },
     did: {
         alice: "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f",

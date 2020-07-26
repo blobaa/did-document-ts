@@ -7,6 +7,6 @@ import Service from "./modules/service/Service";
 export * from "./types";
 
 export class DIDDocKey extends CryptoLdKey {}
-export class DIDDocVerificationRelationship extends VerificationRelationship {}
+export class DIDDocRelationship extends VerificationRelationship {}
 export class DIDDocService extends Service {}
 export class DIDDocument extends Document {}
