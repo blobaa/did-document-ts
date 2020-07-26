@@ -1,5 +1,9 @@
 
 const config = {
+    test: {
+        keyModule: false,
+        serviceModule: true
+    },
     did: {
         alice: "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f",
         bob: "did:baa:0335f47981b5524ec7e441392961e383ec2cf2381c12fb0119a6782a00387868"
@@ -75,6 +79,10 @@ const config = {
                 "HwIDAQAB\r\n" +
                 "-----END PUBLIC KEY-----\r\n"
         }
+    },
+    service: {
+        type: "TestType",
+        endpoint: "http://test/end/point"
     }
 
 };
