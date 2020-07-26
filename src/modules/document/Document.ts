@@ -4,7 +4,7 @@ import { DIDDocPublicKeyObject, DIDDocRelationshipObject, DIDDocRelationshipType
 export default class Document implements IDIDDocument {
     private did = "";
     private context = ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"];
-    private service: IDIDDocService[] | undefined;
+    private services: IDIDDocService[] | undefined;
     private keys: IDIDDocKey[] | undefined;
     private relationships: IDIDDocRelationship[] | undefined;
     private created: string | undefined;
@@ -16,7 +16,7 @@ export default class Document implements IDIDDocument {
         if (params.contexts) {
             this.context = [...this.context, ... params.contexts];
         }
-        this.service = params.service;
+        this.services = params.services;
         this.keys = params.keys;
         this.relationships = params.relationships;
         this.created = params.created;
@@ -44,9 +44,9 @@ export default class Document implements IDIDDocument {
             });
         }
 
-        if (this.service) {
+        if (this.services) {
             const services = [] as DIDDocServiceObject[];
-            this.service.forEach(service => services.push(service.publish()));
+            this.services.forEach(service => services.push(service.publish()));
             doc.service = services as DIDDocServiceObject[];
         }
 

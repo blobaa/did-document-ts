@@ -3,7 +3,8 @@ const config = {
     test: {
         keyModule: true,
         serviceModule: true,
-        relationshipModule: true
+        relationshipModule: true,
+        documentModule: true
     },
     did: {
         alice: "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f",
@@ -80,10 +81,6 @@ const config = {
                 "HwIDAQAB\r\n" +
                 "-----END PUBLIC KEY-----\r\n"
         }
-    },
-    service: {
-        type: "TestType",
-        endpoint: "http://test/end/point"
     }
 
 };

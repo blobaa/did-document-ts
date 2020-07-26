@@ -9,15 +9,15 @@ if (config.test.serviceModule) {
             const params: DIDDocServiceParams = {
                 did: config.did.alice,
                 name: "test",
-                type: config.service.type,
-                serviceEndpoint: config.service.endpoint
+                type: "test-type",
+                serviceEndpoint: "test-endpoint"
             };
             const service = new DIDDocService(params);
 
             const didDocServiceObject = service.publish();
             expect(didDocServiceObject.id).toBe(config.did.alice + "#test");
-            expect(didDocServiceObject.type).toBe(config.service.type);
-            expect(didDocServiceObject.serviceEndpoint).toBe(config.service.endpoint);
+            expect(didDocServiceObject.type).toBe("test-type");
+            expect(didDocServiceObject.serviceEndpoint).toBe("test-endpoint");
         });
 
 
@@ -25,8 +25,8 @@ if (config.test.serviceModule) {
             const params: DIDDocServiceParams = {
                 did: config.did.alice,
                 name: "test",
-                type: config.service.type,
-                serviceEndpoint: config.service.endpoint,
+                type: "test-type",
+                serviceEndpoint: "test-endpoint",
                 extraProp: "extraProperty"
             };
             const service = new DIDDocService(params);
