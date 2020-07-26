@@ -2,13 +2,13 @@ import { DIDDocPublicKeyObject, IDIDDocRelationship, DIDDocRelationshipObject, D
 
 
 export default class VerificationRelationship implements IDIDDocRelationship {
-    private _relationshipType = DIDDocRelationshipType.AUTHENTICATION;
+    private relationshipType = DIDDocRelationshipType.AUTHENTICATION;
     private didDocPublicKeys = [{}] as DIDDocPublicKeyObject[];
     private ids = ["-1"];
 
 
     constructor(params: DIDDocRelationshipParams) {
-        this._relationshipType = params.relationshipType;
+        this.relationshipType = params.relationshipType;
         if (params.didDocPublicKeyIds) {
             this.ids = params.didDocPublicKeyIds;
         }
@@ -19,16 +19,9 @@ export default class VerificationRelationship implements IDIDDocRelationship {
     }
 
 
-    /*eslint-disable @typescript-eslint/explicit-function-return-type*/
-    get relationshipType() {
-        return this._relationshipType;
-    }
-    /*eslint-enable @typescript-eslint/explicit-function-return-type*/
-
-
     public publish(): DIDDocRelationshipObject {
         const retVal = {
-            type: this._relationshipType,
+            type: this.relationshipType,
             array: [] as Array<string[] | DIDDocPublicKeyObject[]>
         };
 
