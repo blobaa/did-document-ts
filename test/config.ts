@@ -1,7 +1,7 @@
 
 const config = {
     test: {
-        keyModule: false,
+        keyModule: true,
         serviceModule: true
     },
     did: {
