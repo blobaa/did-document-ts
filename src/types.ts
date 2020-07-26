@@ -62,7 +62,8 @@ export type DIDDocRelationshipObject = {
 
 
 export type DIDDocServiceParams = {
-    id: string;
+    did: string;
+    name: string;
     type: string;
     serviceEndpoint: string;
     [name: string]: secureAny;
@@ -85,9 +86,9 @@ export type DIDDocumentParams = {
     contexts?: string[];
     keys?: IDIDDocKey[];
     relationships?: IDIDDocRelationship[];
-    service?: IDIDDocService[];
-    created: string;
-    updated: string;
+    services?: IDIDDocService[];
+    created?: string;
+    updated?: string;
 }
 
 export interface IDIDDocument {
