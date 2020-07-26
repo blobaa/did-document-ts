@@ -1,4 +1,4 @@
-import { DIDDocPublicKeyObject, DIDDocRelationshipObject, DIDDocRelationshipType, DIDDocServiceObject, DIDDocument, DIDDocumentObject, DIDDocumentParams, IDIDDocKey, IDIDDocRelationship, IDIDDocService, IDIDDocument } from "../..";
+import { DIDDocPublicKeyObject, DIDDocRelationshipObject, DIDDocRelationshipType, DIDDocServiceObject, DIDDocumentObject, DIDDocumentParams, IDIDDocKey, IDIDDocRelationship, IDIDDocService, IDIDDocument } from "../..";
 
 
 export default class Document implements IDIDDocument {
