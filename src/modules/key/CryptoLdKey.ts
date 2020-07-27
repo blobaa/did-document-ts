@@ -87,16 +87,31 @@ export default class CryptoLdKey implements IDIDDocKey {
     }
 
 
-    public importKeyPair(privateKey: string, publicKey: string): void {
+    public importKeyMaterial(params: DIDDocKeyMaterial): void {
         if (this.keyType === DIDDocKeyType.Ed25519) {
-            this.keyPair = new cryptoLd.Ed25519KeyPair({ publicKeyBase58: publicKey, privateKeyBase58: privateKey });
+            this.keyPair = new cryptoLd.Ed25519KeyPair({ publicKeyBase58: params.publicKeyBase58, privateKeyBase58: params.privateKeyBase58 });
         }
 
         if (this.keyType === DIDDocKeyType.RSA) {
-            this.keyPair = new cryptoLd.RSAKeyPair({ privateKeyPem: privateKey, publicKeyPem: publicKey });
+            this.keyPair = new cryptoLd.RSAKeyPair({ privateKeyPem: params.privateKeyPem, publicKeyPem: params.publicKeyPem });
         }
 
-        this.keyPair.id = this._id + "#" + this.keyPair.fingerprint();
-        this.keyPair.controller = this.controller;
+
+        if ( this._id === "" && this._controller === "") {
+            this.keyPair.id = params.id;
+            this.keyPair.controller = params.controller;
+        } else if (this._id !== "" && this._controller === "") {
+            this.keyPair.id = this._id + "#" + this.keyPair.fingerprint();
+            this.keyPair.controller = params.controller;
+        } else if (this._id !== "" && this._controller === this._id) {
+            this.keyPair.id = this._id + "#" + this.keyPair.fingerprint();
+            this.keyPair.controller = params.controller;
+        } else if (this._id === "" && this._controller !== "") {
+            this.keyPair.id = params.id;
+            this.keyPair.controller = this._controller;
+        } else if (this._id !== "" && this._controller !== "" && this._controller !== this._id) {
+            this.keyPair.id = this._id +"#" + this.keyPair.fingerprint();
+            this.keyPair.controller = this._controller;
+        }
     }
 }

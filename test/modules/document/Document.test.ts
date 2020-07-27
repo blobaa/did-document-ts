@@ -9,8 +9,8 @@ if (config.test.documentModule) {
             const key1 = new DIDDocKey({ did: config.did.alice });
             const key2 = new DIDDocKey({ did: config.did.alice, keyType: DIDDocKeyType.RSA });
 
-            key1.importKeyPair(config.keyMaterial.ed25519.privateKeyBase58, config.keyMaterial.ed25519.publicKeyBase58);
-            key2.importKeyPair(config.keyMaterial.rsa.privateKeyPem, config.keyMaterial.rsa.publicKeyPem);
+            key1.importKeyMaterial(config.keyMaterial.ed25519);
+            key2.importKeyMaterial(config.keyMaterial.rsa);
 
 
             const relationship1 = new DIDDocRelationship({

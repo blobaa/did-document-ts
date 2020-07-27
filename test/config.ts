@@ -8,7 +8,8 @@ const config = {
     },
     did: {
         alice: "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f",
-        bob: "did:baa:0335f47981b5524ec7e441392961e383ec2cf2381c12fb0119a6782a00387868"
+        bob: "did:baa:0335f47981b5524ec7e441392961e383ec2cf2381c12fb0119a6782a00387868",
+        charlie: "did:baa:0335f47981b5524ec7e441392961e3839ede9cf431d01dba07809314302e565f"
     },
     keyMaterial: {
         ed25519: {

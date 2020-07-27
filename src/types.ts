@@ -19,9 +19,9 @@ export type DIDDocKeyMaterial = {
     publicKeyBase58?: string;
     privateKeyPem?: string;
     publicKeyPem?: string;
-    controller: string;
+    controller?: string;
     type: string;
-    id: string;
+    id?: string;
 }
 
 export interface IDIDDocKey {
