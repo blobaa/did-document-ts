@@ -264,4 +264,4 @@ If editing the Readme, please conform to the [standard-readme](https://github.co
 
 ## License
 
-[MIT](../LICENSE) © Attila Aldemir
+[MIT](./LICENSE) © Attila Aldemir
