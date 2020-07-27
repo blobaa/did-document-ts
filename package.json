@@ -1,7 +1,7 @@
 {
   "name": "@blobaa/did-document-ts",
   "version": "1.0.0",
-  "description": "An implementation to create DID Documents written in TypeScript",
+  "description": "A library for DID Document creation",
   "author": "atz3n",
   "license": "MIT",
   "repository": {

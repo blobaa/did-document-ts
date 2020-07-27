@@ -1,6 +1,6 @@
 # did-document-ts
 
-A module for DID document creation.
+A library for DID Document creation.
 
 The purpose of this module is to assist in the creation of DID documents that comply with the decentralized identifier [specification](https://www.w3.org/TR/2020/WD-did-core-20200723/).
 
