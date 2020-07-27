@@ -1,4 +1,4 @@
-import { DIDDocRelationship, DIDDocRelationshipParams, DIDDocRelationshipType } from "../../../src";
+import { DIDDocRelationship, DIDDocRelationshipParams, DIDDocRelationshipType, DIDDocKey, DIDDocKeyType } from "../../../src";
 import config from "./../../config";
 
 
@@ -6,9 +6,14 @@ if (config.test.relationshipModule) {
     describe("Relationship module tests", () => {
 
         test("Relationship publishing with ids", () => {
+            const key1 = new DIDDocKey({ did: "" });
+            const key2 = new DIDDocKey({ did: "", keyType: DIDDocKeyType.RSA });
+            key1.importKeyMaterial(config.keyMaterial.ed25519);
+            key2.importKeyMaterial(config.keyMaterial.rsa);
+
             const params: DIDDocRelationshipParams = {
                 relationshipType: DIDDocRelationshipType.ASSERTION_METHOD,
-                didDocPublicKeyIds: [ config.didDocPublicKeyObject.ed25519.id, config.didDocPublicKeyObject.rsa.id ]
+                keyIds: [ key1, key2 ]
             };
             const relationship = new DIDDocRelationship(params);
 
@@ -20,9 +25,14 @@ if (config.test.relationshipModule) {
 
 
         test("Relationship publishing with keys", () => {
+            const key1 = new DIDDocKey({ did: "" });
+            const key2 = new DIDDocKey({ did: "", keyType: DIDDocKeyType.RSA });
+            key1.importKeyMaterial(config.keyMaterial.ed25519);
+            key2.importKeyMaterial(config.keyMaterial.rsa);
+
             const params: DIDDocRelationshipParams = {
                 relationshipType: DIDDocRelationshipType.AUTHENTICATION,
-                didDocPublicKeys: [ config.didDocPublicKeyObject.ed25519, config.didDocPublicKeyObject.rsa ]
+                keys: [ key1, key2 ]
             };
             const relationship = new DIDDocRelationship(params);
 
@@ -34,10 +44,15 @@ if (config.test.relationshipModule) {
 
 
         test("Relationship publishing mixed", () => {
+            const key1 = new DIDDocKey({ did: "" });
+            const key2 = new DIDDocKey({ did: "", keyType: DIDDocKeyType.RSA });
+            key1.importKeyMaterial(config.keyMaterial.ed25519);
+            key2.importKeyMaterial(config.keyMaterial.rsa);
+
             const params: DIDDocRelationshipParams = {
                 relationshipType: DIDDocRelationshipType.KEY_AGREEMENT,
-                didDocPublicKeys: [ config.didDocPublicKeyObject.ed25519 ],
-                didDocPublicKeyIds: [ config.didDocPublicKeyObject.rsa.id ]
+                keys: [ key1 ],
+                keyIds: [ key2 ]
             };
             const relationship = new DIDDocRelationship(params);
 

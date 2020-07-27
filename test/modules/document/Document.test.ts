@@ -15,12 +15,12 @@ if (config.test.documentModule) {
 
             const relationship1 = new DIDDocRelationship({
                 relationshipType: DIDDocRelationshipType.AUTHENTICATION,
-                didDocPublicKeyIds: [ key1.id ],
+                keyIds: [ key1 ],
             });
 
             const relationship2 = new DIDDocRelationship({
                 relationshipType: DIDDocRelationshipType.ASSERTION_METHOD,
-                didDocPublicKeyIds: [ key2.id ],
+                keyIds: [ key2 ],
             });
 
 
@@ -47,6 +47,7 @@ if (config.test.documentModule) {
                 updated: "today"
             });
             const didDocumentObject = document.publish();
+
 
             expect(didDocumentObject["@context"].length).toBe(3);
             expect(didDocumentObject["@context"][0]).toBe("https://www.w3.org/ns/did/v1");

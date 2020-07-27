@@ -9,12 +9,19 @@ export default class VerificationRelationship implements IDIDDocRelationship {
 
     constructor(params: DIDDocRelationshipParams) {
         this.relationshipType = params.relationshipType;
-        if (params.didDocPublicKeyIds) {
-            this.ids = params.didDocPublicKeyIds;
+
+        if (params.keyIds) {
+            this.ids = [];
+            params.keyIds.forEach((key) => {
+                this.ids.push(key.publish().id);
+            });
         }
 
-        if (params.didDocPublicKeys) {
-            this.didDocPublicKeys = params.didDocPublicKeys;
+        if (params.keys) {
+            this.didDocPublicKeys = [];
+            params.keys.forEach((key) => {
+                this.didDocPublicKeys.push(key.publish());
+            });
         }
     }
 

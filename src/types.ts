@@ -1,3 +1,4 @@
+
 /*eslint-disable-next-line @typescript-eslint/no-explicit-any*/
 export type secureAny = any; // same as any, but used when it's intended and secure
 export type objectAny = {[name: string]: secureAny};
@@ -39,8 +40,8 @@ export type DIDDocPublicKeyObject = {
 
 export type DIDDocRelationshipParams = {
     relationshipType: DIDDocRelationshipType;
-    didDocPublicKeyIds?: string[];
-    didDocPublicKeys?: DIDDocPublicKeyObject[];
+    keyIds?: IDIDDocKey[];
+    keys?: IDIDDocKey[];
 }
 
 export enum DIDDocRelationshipType {
