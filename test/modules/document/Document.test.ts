@@ -12,15 +12,18 @@ if (config.test.documentModule) {
             key1.importKeyMaterial(config.keyMaterial.ed25519);
             key2.importKeyMaterial(config.keyMaterial.rsa);
 
+            const didDocPubKey1 = key1.publish();
+            const didDocPubKey2 = key2.publish();
+
 
             const relationship1 = new DIDDocRelationship({
                 relationshipType: DIDDocRelationshipType.AUTHENTICATION,
-                keyIds: [ key1 ],
+                publicKeys: [ didDocPubKey1 ]
             });
 
             const relationship2 = new DIDDocRelationship({
                 relationshipType: DIDDocRelationshipType.ASSERTION_METHOD,
-                keyIds: [ key2 ],
+                publicKeys: [ didDocPubKey2 ]
             });
 
 

@@ -8,12 +8,17 @@ if (config.test.relationshipModule) {
         test("Relationship publishing with ids", () => {
             const key1 = new DIDDocKey({ did: "" });
             const key2 = new DIDDocKey({ did: "", keyType: DIDDocKeyType.RSA });
+
             key1.importKeyMaterial(config.keyMaterial.ed25519);
             key2.importKeyMaterial(config.keyMaterial.rsa);
 
+            const didDocPubKey1 = key1.publish();
+            const didDocPubKey2 = key2.publish();
+
+
             const params: DIDDocRelationshipParams = {
                 relationshipType: DIDDocRelationshipType.ASSERTION_METHOD,
-                keyIds: [ key1, key2 ]
+                publicKeysAsRef: [ didDocPubKey1, didDocPubKey2 ]
             };
             const relationship = new DIDDocRelationship(params);
 
@@ -27,12 +32,17 @@ if (config.test.relationshipModule) {
         test("Relationship publishing with keys", () => {
             const key1 = new DIDDocKey({ did: "" });
             const key2 = new DIDDocKey({ did: "", keyType: DIDDocKeyType.RSA });
+
             key1.importKeyMaterial(config.keyMaterial.ed25519);
             key2.importKeyMaterial(config.keyMaterial.rsa);
 
+            const didDocPubKey1 = key1.publish();
+            const didDocPubKey2 = key2.publish();
+
+
             const params: DIDDocRelationshipParams = {
                 relationshipType: DIDDocRelationshipType.AUTHENTICATION,
-                keys: [ key1, key2 ]
+                publicKeys: [ didDocPubKey1, didDocPubKey2 ]
             };
             const relationship = new DIDDocRelationship(params);
 
@@ -46,13 +56,18 @@ if (config.test.relationshipModule) {
         test("Relationship publishing mixed", () => {
             const key1 = new DIDDocKey({ did: "" });
             const key2 = new DIDDocKey({ did: "", keyType: DIDDocKeyType.RSA });
+
             key1.importKeyMaterial(config.keyMaterial.ed25519);
             key2.importKeyMaterial(config.keyMaterial.rsa);
 
+            const didDocPubKey1 = key1.publish();
+            const didDocPubKey2 = key2.publish();
+
+
             const params: DIDDocRelationshipParams = {
                 relationshipType: DIDDocRelationshipType.KEY_AGREEMENT,
-                keys: [ key1 ],
-                keyIds: [ key2 ]
+                publicKeys: [ didDocPubKey1 ],
+                publicKeysAsRef: [ didDocPubKey2 ]
             };
             const relationship = new DIDDocRelationship(params);
 

@@ -40,8 +40,8 @@ export type DIDDocPublicKeyObject = {
 
 export type DIDDocRelationshipParams = {
     relationshipType: DIDDocRelationshipType;
-    keyIds?: IDIDDocKey[];
-    keys?: IDIDDocKey[];
+    publicKeysAsRef?: DIDDocPublicKeyObject[];
+    publicKeys?: DIDDocPublicKeyObject[];
 }
 
 export enum DIDDocRelationshipType {

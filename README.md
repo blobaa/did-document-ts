@@ -33,6 +33,7 @@ npm install @blobaa/did-document-ts
 ## Usage
 
 ### DIDDocKey handling
+
 ````typescript
 import { DIDDocKey, DIDDocKeyType } from "@blboaa/did-document-ts"
 
@@ -101,43 +102,54 @@ const DIDDocKeyHandling = async(): Promise<void> => {
             '-----END PUBLIC KEY-----\r\n'
     }
     */
-
 };
+
 DIDDocKeyHandling();
 ````
 
 ### DIDDocument creation
+
 ````typescript
 import { DIDDocKey, DIDDocRelationship, DIDDocRelationshipType, DIDDocService, DIDDocument } from "@blboaa/did-document-ts";
 
 
 const didAlice = "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f";
+const didBob = "did:baa:0335f47981b5524ec7e441392961e383ec2cf2381c12fb0119a6782a00387868";
 
 const createDIDDocument = async (): Promise<void> => {
-
-    /* generate or import keys */
+    
+    /* create or import DID Document public keys  */
     const key1 = new DIDDocKey({ did: didAlice });
     const key2 = new DIDDocKey({ did: didAlice });
     const key3 = new DIDDocKey({ did: didAlice });
-    const key4 = new DIDDocKey({ did: didAlice });
+    const key4 = new DIDDocKey({ did: didAlice, controller: didBob });
 
     await key1.generate();
     await key2.generate();
     await key3.generate();
     await key4.generate();
 
+    const didDocPublicKey1 = key1.publish();
+    const didDocPublicKey2 = key2.publish();
+    const didDocPublicKey3 = key3.publish();
+    const didDocPublicKey4 = key4.publish();
+
 
     /* create verification relationships (optional) */
     const authentication = new DIDDocRelationship({
         relationshipType: DIDDocRelationshipType.AUTHENTICATION,
-        keyIds: [ key1, key2 ], // use key as reference
-        keys: [ key3 ]          // embed key
+        publicKeysAsRef: [ didDocPublicKey1, didDocPublicKey2 ], // referenced public key
+        publicKeys: [ didDocPublicKey3 ] // embedded public key
     });
 
     const assertion = new DIDDocRelationship({
         relationshipType: DIDDocRelationshipType.ASSERTION_METHOD,
-        keyIds: [ key1, key2 ],
-        keys: [ key4 ]
+        publicKeysAsRef: [ didDocPublicKey1, didDocPublicKey1 ]
+    });
+
+    const invocation = new DIDDocRelationship({
+        relationshipType: DIDDocRelationshipType.CAPABILITY_INVOCATION,
+        publicKeys: [ didDocPublicKey4 ]
     });
 
 
@@ -164,8 +176,8 @@ const createDIDDocument = async (): Promise<void> => {
     const document = new DIDDocument({
         did: didAlice,
         contexts: [ "https://my-new.awesome-context.com/my/context" ], // additional custom contexts (optional)
-        keys: [ key1, key2 ], // referenced keys (optional)
-        relationships: [ authentication, assertion ],
+        keys: [ key1, key2 ], // referenced keys
+        relationships: [ authentication, assertion, invocation ],
         services: [ vcService, myService ],
         created: creationDate,
     });
@@ -183,36 +195,38 @@ const createDIDDocument = async (): Promise<void> => {
         "id": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f",
         "publicKey": [
             {
-                "id": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkfUks9qgHvKW9Bbx3VeA35bGKdCgKc8YMjAyDFn44DJst",
+                "id": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkswMrgFNFvqZS5FqKMujZdVb4dunJGoYutaFLBTzeKEJK",
                 "type": "Ed25519VerificationKey2018",
                 "controller": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f",
-                "publicKeyBase58": "22VpZbRran1g577Lp5CCEViKodQUCFJ13A4HRW63J66W"
+                "publicKeyBase58": "EV6p617pbJ4xxkzcgLminQ34pLWSrvJZCZLQMC2dQ1Ww"
             },
             {
-                "id": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6Mkm5HUnL98Luft2MDragr4wi31Ns15DMa6bZMseKf4PUd4",
+                "id": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkpxDauiZnTaFtHE1c77YtLGXqzip9mVcVF23HxCP96vcr",
                 "type": "Ed25519VerificationKey2018",
                 "controller": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f",
-                "publicKeyBase58": "7d2SC5th1NBQurP9u7tE6cV1ZHjDoUKjuYSwp3h3UFqg"
+                "publicKeyBase58": "BVxYKUKM82mRAjAuRYb3VAyrB9YJMcN8Z18N7vR8BhqU"
             }
         ],
         "authentication": [
-            "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkfUks9qgHvKW9Bbx3VeA35bGKdCgKc8YMjAyDFn44DJst",
-            "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6Mkm5HUnL98Luft2MDragr4wi31Ns15DMa6bZMseKf4PUd4",
+            "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkswMrgFNFvqZS5FqKMujZdVb4dunJGoYutaFLBTzeKEJK",
+            "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkpxDauiZnTaFtHE1c77YtLGXqzip9mVcVF23HxCP96vcr",
             {
-                "id": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MknfvdzQPWkeYBcnP3Rd2kWqbRzzDyerRQPsEByM84rWjd",
+                "id": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkohiQvyqaFmvViFjbAnHyw6EHD9pLpzcPKMyA9EM5VucU",
                 "type": "Ed25519VerificationKey2018",
                 "controller": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f",
-                "publicKeyBase58": "9DfbQA95R73iWHYLk44ufk3SBQx8EyB3hrKG95A3wHxF"
+                "publicKeyBase58": "AFTNLjb8vES2bkttVDL95zgHPaYVR7N2dM4EJxP4agq6"
             }
         ],
         "assertionMethod": [
-            "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkfUks9qgHvKW9Bbx3VeA35bGKdCgKc8YMjAyDFn44DJst",
-            "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6Mkm5HUnL98Luft2MDragr4wi31Ns15DMa6bZMseKf4PUd4",
+            "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkswMrgFNFvqZS5FqKMujZdVb4dunJGoYutaFLBTzeKEJK",
+            "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkswMrgFNFvqZS5FqKMujZdVb4dunJGoYutaFLBTzeKEJK"
+        ],
+        "capabilityInvocation": [
             {
-                "id": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6Mkmk1YzxweaXMWu7fvPqrApgz774krZdv2ndg822j2dZ6u",
+                "id": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6Mkmrjo2RqtcjRao2rhYDVD5WLKGxaGx41Ysyrgfn8Nuo76",
                 "type": "Ed25519VerificationKey2018",
-                "controller": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f",
-                "publicKeyBase58": "8HkWQihDEys3ncqDiGtKybS7HVV19kfg6cmCBkm1iLKX"
+                "controller": "did:baa:0335f47981b5524ec7e441392961e383ec2cf2381c12fb0119a6782a00387868",
+                "publicKeyBase58": "8QUkSBbTHBw7gY1zreXNEQnKTPJRYAmCBxwkqWAMzaKi"
             }
         ],
         "service": [
@@ -228,7 +242,7 @@ const createDIDDocument = async (): Promise<void> => {
                 "prop": "an additional custom property"
             }
         ],
-        "created": "2020-07-27T14:39:02.891Z"
+        "created": "2020-07-27T16:05:05.638Z"
     }
     */
 };
