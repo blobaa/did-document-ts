@@ -62,7 +62,6 @@ export type DIDDocRelationshipObject = {
 
 
 export type DIDDocServiceParams = {
-    did: string;
     name: string;
     type: string;
     serviceEndpoint: string;
@@ -70,7 +69,7 @@ export type DIDDocServiceParams = {
 }
 
 export interface IDIDDocService {
-    publish(): DIDDocServiceObject;
+    publish(did: string): DIDDocServiceObject;
 }
 
 export type DIDDocServiceObject = {

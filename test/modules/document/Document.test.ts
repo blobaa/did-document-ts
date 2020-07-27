@@ -25,14 +25,12 @@ if (config.test.documentModule) {
 
 
             const service1 = new DIDDocService({
-                did: config.did.alice,
                 name: "test1",
                 type: "test-type",
                 serviceEndpoint: "test-endpoint1"
             });
 
             const service2 = new DIDDocService({
-                did: config.did.alice,
                 name: "test2",
                 type: "test-type",
                 serviceEndpoint: "test-endpoint2"
@@ -70,8 +68,10 @@ if (config.test.documentModule) {
 
             expect(didDocumentObject.service?.length).toBe(2);
             if (didDocumentObject.service) {
-                expect(didDocumentObject.service[0]).toEqual(service1.publish());
-                expect(didDocumentObject.service[1]).toEqual(service2.publish());
+                expect(didDocumentObject.service[0]).toEqual(service1.publish(config.did.alice));
+                expect(didDocumentObject.service[1]).toEqual(service2.publish(config.did.alice));
+            } else {
+                fail("service object should exist");
             }
         });
 

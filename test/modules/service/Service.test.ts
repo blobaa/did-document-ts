@@ -7,14 +7,13 @@ if (config.test.serviceModule) {
 
         test("Service publishing", () => {
             const params: DIDDocServiceParams = {
-                did: config.did.alice,
                 name: "test",
                 type: "test-type",
                 serviceEndpoint: "test-endpoint"
             };
             const service = new DIDDocService(params);
 
-            const didDocServiceObject = service.publish();
+            const didDocServiceObject = service.publish(config.did.alice);
             expect(didDocServiceObject.id).toBe(config.did.alice + "#test");
             expect(didDocServiceObject.type).toBe("test-type");
             expect(didDocServiceObject.serviceEndpoint).toBe("test-endpoint");
@@ -23,7 +22,6 @@ if (config.test.serviceModule) {
 
         test("Service creation with additional properties", () => {
             const params: DIDDocServiceParams = {
-                did: config.did.alice,
                 name: "test",
                 type: "test-type",
                 serviceEndpoint: "test-endpoint",
@@ -31,7 +29,7 @@ if (config.test.serviceModule) {
             };
             const service = new DIDDocService(params);
 
-            const didDocServiceObject = service.publish();
+            const didDocServiceObject = service.publish(config.did.alice);
             expect(didDocServiceObject.extraProp).toBe("extraProperty");
         });
 

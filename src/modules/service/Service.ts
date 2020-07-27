@@ -2,13 +2,14 @@ import { IDIDDocService, DIDDocServiceParams, DIDDocServiceObject, objectAny } f
 
 
 export default class Service implements IDIDDocService {
-    private id = "";
+    private name = "";
     private type = "";
     private serviceEndpoint = "";
     private misc = {} as objectAny;
 
+
     constructor(params: DIDDocServiceParams) {
-        this.id = params.did + "#" + params.name;
+        this.name = params.name;
         this.type = params.type;
         this.serviceEndpoint = params.serviceEndpoint;
 
@@ -20,9 +21,9 @@ export default class Service implements IDIDDocService {
     }
 
 
-    public publish(): DIDDocServiceObject {
+    public publish(did: string): DIDDocServiceObject {
         let retVal: DIDDocServiceObject = {
-            id: this.id,
+            id: did + "#" + this.name,
             type: this.type,
             serviceEndpoint: this.serviceEndpoint,
         };

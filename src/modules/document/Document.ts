@@ -46,7 +46,7 @@ export default class Document implements IDIDDocument {
 
         if (this.services) {
             const services = [] as DIDDocServiceObject[];
-            this.services.forEach(service => services.push(service.publish()));
+            this.services.forEach(service => services.push(service.publish(this.did)));
             doc.service = services as DIDDocServiceObject[];
         }
 
