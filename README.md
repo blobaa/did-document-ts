@@ -42,6 +42,7 @@ const didAlice = "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba078093
 const didBob = "did:baa:0335f47981b5524ec7e441392961e383ec2cf2381c12fb0119a6782a00387868";
 const didCharlie = "did:baa:0335f47981b5524ec7e441392961e3839ede9cf431d01dba07809314302e565f";
 
+
 const DIDDocKeyHandling = async(): Promise<void> => {
 
     /* generate keys */
@@ -83,7 +84,7 @@ const DIDDocKeyHandling = async(): Promise<void> => {
     newKeyRsa.importKeyMaterial(keyRsaMaterial);
 
 
-    /* publish public keys */
+    /* publish public key */
     const publicKeyRsa = newKeyRsa.publish();
     console.log(publicKeyRsa);
     /*
@@ -116,6 +117,7 @@ import { DIDDocKey, DIDDocRelationship, DIDDocRelationshipType, DIDDocService, D
 const didAlice = "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f";
 const didBob = "did:baa:0335f47981b5524ec7e441392961e383ec2cf2381c12fb0119a6782a00387868";
 
+
 const createDIDDocument = async (): Promise<void> => {
     
     /* create or import DID Document public keys  */
@@ -138,8 +140,8 @@ const createDIDDocument = async (): Promise<void> => {
     /* create verification relationships (optional) */
     const authentication = new DIDDocRelationship({
         relationshipType: DIDDocRelationshipType.AUTHENTICATION,
-        publicKeysAsRef: [ didDocPublicKey1, didDocPublicKey2 ], // referenced public key
-        publicKeys: [ didDocPublicKey3 ] // embedded public key
+        publicKeysAsRef: [ didDocPublicKey1, didDocPublicKey2 ], // referenced public keys
+        publicKeys: [ didDocPublicKey3 ] // embedded public keys
     });
 
     const assertion = new DIDDocRelationship({
@@ -252,7 +254,7 @@ createDIDDocument();
 
 ## API
 
-TODO: add API section
+TODO: add API description
 
 
 ## Contributing
