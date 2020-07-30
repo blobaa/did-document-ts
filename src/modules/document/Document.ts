@@ -1,11 +1,11 @@
-import { DIDDocPublicKeyObject, DIDDocRelationshipObject, DIDDocRelationshipType, DIDDocServiceObject, DIDDocumentObject, DIDDocumentParams, IDIDDocKey, IDIDDocRelationship, IDIDDocService, IDIDDocument } from "../..";
+import { DIDDocPublicKey, DIDDocRelationshipObject, DIDDocRelationshipType, DIDDocServiceObject, DIDDocumentObject, DIDDocumentParams, IDIDDocRelationship, IDIDDocService, IDIDDocument } from "../..";
 
 
 export default class Document implements IDIDDocument {
     private did = "";
     private context = ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"];
     private services: IDIDDocService[] | undefined;
-    private keys: IDIDDocKey[] | undefined;
+    private publicKeys: DIDDocPublicKey[] | undefined;
     private relationships: IDIDDocRelationship[] | undefined;
     private created: string | undefined;
     private updated: string | undefined;
@@ -17,7 +17,7 @@ export default class Document implements IDIDDocument {
             this.context = [...this.context, ... params.contexts];
         }
         this.services = params.services;
-        this.keys = params.keys;
+        this.publicKeys = params.publicKeys;
         this.relationships = params.relationships;
         this.created = params.created;
         this.updated = params.updated;
@@ -30,10 +30,10 @@ export default class Document implements IDIDDocument {
         doc["@context"] = this.context;
         doc.id = this.did;
 
-        if (this.keys) {
-            const keys = [] as DIDDocPublicKeyObject[];
-            this.keys.forEach(key => keys.push(key.publish()));
-            doc.publicKey = keys as DIDDocPublicKeyObject[];
+        if (this.publicKeys) {
+            const pubKeys = [] as DIDDocPublicKey[];
+            this.publicKeys.forEach(key => pubKeys.push(key));
+            doc.publicKey = pubKeys as DIDDocPublicKey[];
         }
 
         if (this.relationships) {

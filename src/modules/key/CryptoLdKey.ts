@@ -1,8 +1,8 @@
 import * as cryptoLd from "crypto-ld";
-import { DIDDocKeyMaterial, DIDDocKeyParams, DIDDocKeyType, DIDDocPublicKeyObject, IDIDDocKey, secureAny } from "../../types";
+import { DIDDocKeyMaterial, DIDDocKeyParams, DIDDocKeyType, DIDDocPublicKey, secureAny } from "../../types";
 
 
-export default class CryptoLdKey implements IDIDDocKey {
+export default class CryptoLdKey {
     private keyPair: secureAny = {};
     private _keyType: DIDDocKeyType = DIDDocKeyType.Ed25519;
     private _id = "";
@@ -77,7 +77,7 @@ export default class CryptoLdKey implements IDIDDocKey {
     }
 
 
-    public publish(): DIDDocPublicKeyObject {
+    public publish(): DIDDocPublicKey {
         return this.keyPair.publicNode();
     }
 

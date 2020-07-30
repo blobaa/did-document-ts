@@ -1,9 +1,9 @@
-import { DIDDocPublicKeyObject, IDIDDocRelationship, DIDDocRelationshipObject, DIDDocRelationshipType, DIDDocRelationshipParams } from "../../types";
+import { DIDDocPublicKey, IDIDDocRelationship, DIDDocRelationshipObject, DIDDocRelationshipType, DIDDocRelationshipParams } from "../../types";
 
 
 export default class VerificationRelationship implements IDIDDocRelationship {
     private relationshipType = DIDDocRelationshipType.AUTHENTICATION;
-    private didDocPublicKeys = [{}] as DIDDocPublicKeyObject[];
+    private didDocPublicKeys = [{}] as DIDDocPublicKey[];
     private ids = ["-1"];
 
 
@@ -29,15 +29,15 @@ export default class VerificationRelationship implements IDIDDocRelationship {
     public publish(): DIDDocRelationshipObject {
         const retVal = {
             type: this.relationshipType,
-            array: [] as Array<string[] | DIDDocPublicKeyObject[]>
+            array: [] as Array<string[] | DIDDocPublicKey[]>
         };
 
         if (this.ids[0] !== "-1") {
-            retVal.array = [...retVal.array, ...this.ids] as Array<string[] | DIDDocPublicKeyObject[]>;
+            retVal.array = [...retVal.array, ...this.ids] as Array<string[] | DIDDocPublicKey[]>;
         }
 
         if (Object.entries(this.didDocPublicKeys[0]).length !== 0) {
-            retVal.array = [...retVal.array, ...this.didDocPublicKeys] as Array<string[] | DIDDocPublicKeyObject[]>;
+            retVal.array = [...retVal.array, ...this.didDocPublicKeys] as Array<string[] | DIDDocPublicKey[]>;
         }
         return retVal;
     }

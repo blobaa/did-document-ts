@@ -12,18 +12,18 @@ if (config.test.documentModule) {
             key1.importKeyMaterial(config.keyMaterial.ed25519);
             key2.importKeyMaterial(config.keyMaterial.rsa);
 
-            const didDocPubKey1 = key1.publish();
-            const didDocPubKey2 = key2.publish();
+            const pubKey1 = key1.publish();
+            const pubKey2 = key2.publish();
 
 
             const relationship1 = new DIDDocRelationship({
                 relationshipType: DIDDocRelationshipType.AUTHENTICATION,
-                publicKeys: [ didDocPubKey1 ]
+                publicKeys: [ pubKey1 ]
             });
 
             const relationship2 = new DIDDocRelationship({
                 relationshipType: DIDDocRelationshipType.ASSERTION_METHOD,
-                publicKeys: [ didDocPubKey2 ]
+                publicKeys: [ pubKey2 ]
             });
 
 
@@ -42,7 +42,7 @@ if (config.test.documentModule) {
 
             const document = new DIDDocument({
                 did: config.did.alice,
-                keys: [ key1, key2 ],
+                publicKeys: [ pubKey1, pubKey2 ],
                 relationships: [ relationship1, relationship2 ],
                 services: [service1, service2],
                 contexts: [ "new-awesome-context" ],

@@ -135,27 +135,27 @@ const createDIDDocument = async (): Promise<void> => {
     await key3.generate();
     await key4.generate();
 
-    const didDocPublicKey1 = key1.publish();
-    const didDocPublicKey2 = key2.publish();
-    const didDocPublicKey3 = key3.publish();
-    const didDocPublicKey4 = key4.publish();
+    const publicKey1 = key1.publish();
+    const publicKey2 = key2.publish();
+    const publicKey3 = key3.publish();
+    const publicKey4 = key4.publish();
 
 
     /* create verification relationships (optional) */
     const authentication = new DIDDocRelationship({
         relationshipType: DIDDocRelationshipType.AUTHENTICATION,
-        publicKeysAsRef: [ didDocPublicKey1, didDocPublicKey2 ], // referenced public keys
-        publicKeys: [ didDocPublicKey3 ] // embedded public keys
+        publicKeysAsRef: [ publicKey1, publicKey2 ], // referenced public keys
+        publicKeys: [ publicKey3 ] // embedded public keys
     });
 
     const assertion = new DIDDocRelationship({
         relationshipType: DIDDocRelationshipType.ASSERTION_METHOD,
-        publicKeysAsRef: [ didDocPublicKey1, didDocPublicKey1 ]
+        publicKeysAsRef: [ publicKey1, publicKey1 ]
     });
 
     const invocation = new DIDDocRelationship({
         relationshipType: DIDDocRelationshipType.CAPABILITY_INVOCATION,
-        publicKeys: [ didDocPublicKey4 ]
+        publicKeys: [ publicKey4 ]
     });
 
 
@@ -182,7 +182,7 @@ const createDIDDocument = async (): Promise<void> => {
     const document = new DIDDocument({
         did: didAlice,
         contexts: [ "https://my-new.awesome-context.com/my/context" ], // additional custom contexts (optional)
-        keys: [ key1, key2 ], // referenced keys
+        publicKeys: [ publicKey1, publicKey2 ], // referenced keys
         relationships: [ authentication, assertion, invocation ],
         services: [ vcService, myService ],
         created: creationDate,

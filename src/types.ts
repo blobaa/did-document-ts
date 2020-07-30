@@ -25,11 +25,8 @@ export type DIDDocKeyMaterial = {
     id?: string;
 }
 
-export interface IDIDDocKey {
-    publish(): DIDDocPublicKeyObject;
-}
 
-export type DIDDocPublicKeyObject = {
+export type DIDDocPublicKey = {
     publicKeyBase58?: string;
     publicKeyPem?: string;
     controller: string;
@@ -40,8 +37,8 @@ export type DIDDocPublicKeyObject = {
 
 export type DIDDocRelationshipParams = {
     relationshipType: DIDDocRelationshipType;
-    publicKeysAsRef?: DIDDocPublicKeyObject[];
-    publicKeys?: DIDDocPublicKeyObject[];
+    publicKeysAsRef?: DIDDocPublicKey[];
+    publicKeys?: DIDDocPublicKey[];
 }
 
 export enum DIDDocRelationshipType {
@@ -58,7 +55,7 @@ export interface IDIDDocRelationship {
 
 export type DIDDocRelationshipObject = {
     type: string;
-    array: Array<string[] | DIDDocPublicKeyObject[]>;
+    array: Array<string[] | DIDDocPublicKey[]>;
 }
 
 
@@ -84,7 +81,7 @@ export type DIDDocServiceObject = {
 export type DIDDocumentParams = {
     did?: string;
     contexts?: string[];
-    keys?: IDIDDocKey[];
+    publicKeys?: DIDDocPublicKey[];
     relationships?: IDIDDocRelationship[];
     services?: IDIDDocService[];
     created?: string;
@@ -101,13 +98,13 @@ export type DIDDocumentObject = {
     created?: string;
     updated?: string;
 
-    publicKey?: DIDDocPublicKeyObject[];
+    publicKey?: DIDDocPublicKey[];
 
-    authentication?: Array<string[] | DIDDocPublicKeyObject[]>;
-    assertionMethod?: Array<string[] | DIDDocPublicKeyObject[]>;
-    keyAgreement?: Array<string[] | DIDDocPublicKeyObject[]>;
-    capabilityInvocation?: Array<string[] | DIDDocPublicKeyObject[]>;
-    capabilityDelegation?: Array<string[] | DIDDocPublicKeyObject[]>;
+    authentication?: Array<string[] | DIDDocPublicKey[]>;
+    assertionMethod?: Array<string[] | DIDDocPublicKey[]>;
+    keyAgreement?: Array<string[] | DIDDocPublicKey[]>;
+    capabilityInvocation?: Array<string[] | DIDDocPublicKey[]>;
+    capabilityDelegation?: Array<string[] | DIDDocPublicKey[]>;
 
     service?: {
         id: string;
