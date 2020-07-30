@@ -35,7 +35,7 @@ npm install @blobaa/did-document-ts
 ### DIDDocKey handling
 
 ````typescript
-import { DIDDocKey, DIDDocKeyType } from "@blboaa/did-document-ts"
+import { DIDDocKey, DIDDocKeyType } from "@blobaa/did-document-ts"
 
 
 const didAlice = "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f";
@@ -111,7 +111,7 @@ DIDDocKeyHandling();
 ### DIDDocument creation
 
 ````typescript
-import { DIDDocKey, DIDDocRelationship, DIDDocRelationshipType, DIDDocService, DIDDocument } from "@blboaa/did-document-ts";
+import { DIDDocKey, DIDDocRelationship, DIDDocRelationshipType, DIDDocService, DIDDocument } from "@blobaa/did-document-ts";
 
 
 const didAlice = "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f";
