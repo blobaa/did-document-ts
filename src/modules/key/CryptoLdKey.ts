@@ -9,10 +9,10 @@ export default class CryptoLdKey implements IDIDDocKey {
     private _controller = "";
 
 
-    constructor(params: DIDDocKeyParams) {
-        this._keyType = params.keyType || DIDDocKeyType.Ed25519;
-        this._id = params.did;
-        this._controller = params.controller || this._id;
+    constructor(params?: DIDDocKeyParams) {
+        this._keyType = params?.keyType || DIDDocKeyType.Ed25519;
+        this._id = params?.did || "";
+        this._controller = params?.controller || this._id;
     }
 
 

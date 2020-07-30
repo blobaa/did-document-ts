@@ -6,7 +6,7 @@ if (config.test.keyModule) {
     describe("Key module tests", () => {
 
         test("Ed25519 key generation", async () => {
-            const key = new DIDDocKey({ did: config.did.alice });
+            const key = new DIDDocKey();
             await key.generate();
 
             const keyMaterial = await key.exportKeyMaterial();

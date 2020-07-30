@@ -82,7 +82,7 @@ export type DIDDocServiceObject = {
 
 
 export type DIDDocumentParams = {
-    did: string;
+    did?: string;
     contexts?: string[];
     keys?: IDIDDocKey[];
     relationships?: IDIDDocRelationship[];
