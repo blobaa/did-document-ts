@@ -12,7 +12,7 @@ export default class Document implements IDIDDocument {
 
 
     constructor(params: DIDDocumentParams) {
-        this.did = params.did;
+        this.did = params.did || "";
         if (params.contexts) {
             this.context = [...this.context, ... params.contexts];
         }

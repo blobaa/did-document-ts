@@ -5,7 +5,7 @@ export type objectAny = {[name: string]: secureAny};
 
 
 export type DIDDocKeyParams = {
-    did: string;
+    did?: string;
     keyType?: DIDDocKeyType;
     controller?: string;
 }
