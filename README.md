@@ -7,16 +7,23 @@ The purpose of this library is to assist in the creation of DID documents that c
 
 ## Table of Contents
 
+<details><summary><i>click to expand</i></summary>
+<p><br/>
+
 - [did-document-ts](#did-document-ts)
   - [Table of Contents](#table-of-contents)
   - [Security](#security)
   - [Install](#install)
   - [Usage](#usage)
-    - [DIDDocKey handling](#diddockey-handling)
-    - [DIDDocument creation](#diddocument-creation)
+    - [DIDDocKey Handling](#diddockey-handling)
+    - [DID Document Creation](#did-document-creation)
+    - [DID Document Template Creation](#did-document-template-creation)
   - [API](#api)
   - [Contributing](#contributing)
   - [License](#license)
+
+</p>
+</details>
 
 
 ## Security
@@ -35,7 +42,7 @@ npm install @blobaa/did-document-ts
 
 ## Usage
 
-### DIDDocKey handling
+### DIDDocKey Handling
 
 ````typescript
 import { DIDDocKey, DIDDocKeyType } from "@blobaa/did-document-ts"
@@ -112,7 +119,7 @@ DIDDocKeyHandling();
 ````
 
 
-### DIDDocument creation
+### DID Document Creation
 
 ````typescript
 import { DIDDocKey, DIDDocRelationship, DIDDocRelationshipType, DIDDocService, DIDDocument } from "@blobaa/did-document-ts";
@@ -255,6 +262,92 @@ const createDIDDocument = async (): Promise<void> => {
 
 createDIDDocument();
 ````
+
+
+### DID Document Template Creation
+
+```typescript
+import { DIDDocKey, DIDDocRelationship, DIDDocRelationshipType, DIDDocService, DIDDocument } from "@blobaa/did-document-ts";
+
+
+const createDIDDocumentTemplate = async (): Promise<void> => {
+
+    /* create DID Document public keys  */
+    const key1 = new DIDDocKey();
+    const key2 = new DIDDocKey();
+
+    await key1.generate();
+    await key2.generate();
+
+    const publicKey1 = key1.publish();
+    const publicKey2 = key2.publish();
+
+
+    /* create verification relationships */
+    const authentication = new DIDDocRelationship({
+        relationshipType: DIDDocRelationshipType.AUTHENTICATION,
+        publicKeysAsRef: [ publicKey1 ], // referenced public keys
+        publicKeys: [ publicKey2 ] // embedded public keys
+    });
+
+
+    /* create services */
+    const myService = new DIDDocService({
+        name: "mys",
+        type: "MyService",
+        serviceEndpoint: "https://my.domain.com/mys/",
+        prop: "an additional custom property"
+    });
+
+
+    /* create DID Document */
+    const document = new DIDDocument({
+        contexts: [ "https://my-new.awesome-context.com/my/context" ],
+        publicKeys: [ publicKey1 ],
+        relationships: [ authentication ],
+        services: [ myService ],
+    });
+
+
+    /* publish DID Document Template */
+    console.log(JSON.stringify(document.publish(), undefined, 4));
+    /*
+    {
+        "@context": [
+            "https://www.w3.org/ns/did/v1",
+            "https://w3id.org/security/v1",
+            "https://my-new.awesome-context.com/my/context"
+        ],
+        "id": "",
+        "publicKey": [
+            {
+                "id": "#z6MkoZy5Zb2RhHHJ6Ut4smTRWVzBc9HZGCNKUHxp5u7sNsrk",
+                "type": "Ed25519VerificationKey2018",
+                "publicKeyBase58": "A7i2yLmzMjnpyz3NCCVafQSBna1hrK7xnH3tFd9rTf5N"
+            }
+        ],
+        "authentication": [
+            "#z6MkoZy5Zb2RhHHJ6Ut4smTRWVzBc9HZGCNKUHxp5u7sNsrk",
+            {
+                "id": "#z6MkhuK2biLQuNj4vUKZpqrWBCB4Nu9qoWnK3peNjJueWv5o",
+                "type": "Ed25519VerificationKey2018",
+                "publicKeyBase58": "4T3z1U5yZqEboyUs9GtfL6d4ZKszPdXxMojSu2wdbhJR"
+            }
+        ],
+        "service": [
+            {
+                "id": "#mys",
+                "type": "MyService",
+                "serviceEndpoint": "https://my.domain.com/mys/",
+                "prop": "an additional custom property"
+            }
+        ]
+    }
+    */
+};
+
+createDIDDocumentTemplate();
+```
 
 
 ## API
