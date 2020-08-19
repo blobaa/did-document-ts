@@ -48,9 +48,9 @@ npm install @blobaa/did-document-ts
 import { DIDDocKey, DIDDocKeyType } from "@blobaa/did-document-ts"
 
 
-const didAlice = "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f";
-const didBob = "did:baa:0335f47981b5524ec7e441392961e383ec2cf2381c12fb0119a6782a00387868";
-const didCharlie = "did:baa:0335f47981b5524ec7e441392961e3839ede9cf431d01dba07809314302e565f";
+const didAlice = "did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f";
+const didBob = "did:bba:0335f47981b5524ec7e441392961e383ec2cf2381c12fb0119a6782a00387868";
+const didCharlie = "did:bba:0335f47981b5524ec7e441392961e3839ede9cf431d01dba07809314302e565f";
 
 
 const DIDDocKeyHandling = async(): Promise<void> => {
@@ -73,9 +73,9 @@ const DIDDocKeyHandling = async(): Promise<void> => {
     console.log(keyEd25519Material);
     /*
     {
-        id: 'did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkgYRgvUMGeGApmqGQWzCi8UucQKky6x3sPcTM6YAYTNpX',
+        id: 'did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkgYRgvUMGeGApmqGQWzCi8UucQKky6x3sPcTM6YAYTNpX',
         type: 'Ed25519VerificationKey2018',
-        controller: 'did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f',
+        controller: 'did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f',
         publicKeyBase58: '36AeLE6qJigMfLRhqREsHPMcakV7h4oWhbYRGGCXYA39',
         privateKeyBase58: '31MQ1dzHVcrk8YdvipnxRm4LvXT3NhJKPDRcGCAwWZgraTikhRRRdFX9rgPpVZ2GqGJXou4Cmcgx2Ztgp91MG271'
     }
@@ -99,9 +99,9 @@ const DIDDocKeyHandling = async(): Promise<void> => {
     console.log(publicKeyRsa);
     /*
     {
-        id: 'did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#zAHd7WYR2n5BQCxX4U9Xdhn2gxN4bAgtS2ArnitgTyUjXhzDa',
+        id: 'did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#zAHd7WYR2n5BQCxX4U9Xdhn2gxN4bAgtS2ArnitgTyUjXhzDa',
         type: 'RsaVerificationKey2018',
-        controller: 'did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f',
+        controller: 'did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f',
         publicKeyPem: '-----BEGIN PUBLIC KEY-----\r\n' +
             'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA29r0GpDFx9pLaHJLlGGv\r\n' +
             'vtf7oIMsaMAnQ+IRp/pO2FUPLf4jGpbnkUCYU+rSRUTPtnsj7Nw6jC4vU/zcc5qL\r\n' +
@@ -125,8 +125,8 @@ DIDDocKeyHandling();
 import { DIDDocKey, DIDDocRelationship, DIDDocRelationshipType, DIDDocService, DIDDocument } from "@blobaa/did-document-ts";
 
 
-const didAlice = "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f";
-const didBob = "did:baa:0335f47981b5524ec7e441392961e383ec2cf2381c12fb0119a6782a00387868";
+const didAlice = "did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f";
+const didBob = "did:bba:0335f47981b5524ec7e441392961e383ec2cf2381c12fb0119a6782a00387868";
 
 
 const createDIDDocument = async (): Promise<void> => {
@@ -205,51 +205,51 @@ const createDIDDocument = async (): Promise<void> => {
             "https://w3id.org/security/v1",
             "https://my-new.awesome-context.com/my/context"
         ],
-        "id": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f",
+        "id": "did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f",
         "publicKey": [
             {
-                "id": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkswMrgFNFvqZS5FqKMujZdVb4dunJGoYutaFLBTzeKEJK",
+                "id": "did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkswMrgFNFvqZS5FqKMujZdVb4dunJGoYutaFLBTzeKEJK",
                 "type": "Ed25519VerificationKey2018",
-                "controller": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f",
+                "controller": "did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f",
                 "publicKeyBase58": "EV6p617pbJ4xxkzcgLminQ34pLWSrvJZCZLQMC2dQ1Ww"
             },
             {
-                "id": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkpxDauiZnTaFtHE1c77YtLGXqzip9mVcVF23HxCP96vcr",
+                "id": "did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkpxDauiZnTaFtHE1c77YtLGXqzip9mVcVF23HxCP96vcr",
                 "type": "Ed25519VerificationKey2018",
-                "controller": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f",
+                "controller": "did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f",
                 "publicKeyBase58": "BVxYKUKM82mRAjAuRYb3VAyrB9YJMcN8Z18N7vR8BhqU"
             }
         ],
         "authentication": [
-            "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkswMrgFNFvqZS5FqKMujZdVb4dunJGoYutaFLBTzeKEJK",
-            "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkpxDauiZnTaFtHE1c77YtLGXqzip9mVcVF23HxCP96vcr",
+            "did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkswMrgFNFvqZS5FqKMujZdVb4dunJGoYutaFLBTzeKEJK",
+            "did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkpxDauiZnTaFtHE1c77YtLGXqzip9mVcVF23HxCP96vcr",
             {
-                "id": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkohiQvyqaFmvViFjbAnHyw6EHD9pLpzcPKMyA9EM5VucU",
+                "id": "did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkohiQvyqaFmvViFjbAnHyw6EHD9pLpzcPKMyA9EM5VucU",
                 "type": "Ed25519VerificationKey2018",
-                "controller": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f",
+                "controller": "did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f",
                 "publicKeyBase58": "AFTNLjb8vES2bkttVDL95zgHPaYVR7N2dM4EJxP4agq6"
             }
         ],
         "assertionMethod": [
-            "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkswMrgFNFvqZS5FqKMujZdVb4dunJGoYutaFLBTzeKEJK",
-            "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkswMrgFNFvqZS5FqKMujZdVb4dunJGoYutaFLBTzeKEJK"
+            "did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkswMrgFNFvqZS5FqKMujZdVb4dunJGoYutaFLBTzeKEJK",
+            "did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6MkswMrgFNFvqZS5FqKMujZdVb4dunJGoYutaFLBTzeKEJK"
         ],
         "capabilityInvocation": [
             {
-                "id": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6Mkmrjo2RqtcjRao2rhYDVD5WLKGxaGx41Ysyrgfn8Nuo76",
+                "id": "did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#z6Mkmrjo2RqtcjRao2rhYDVD5WLKGxaGx41Ysyrgfn8Nuo76",
                 "type": "Ed25519VerificationKey2018",
-                "controller": "did:baa:0335f47981b5524ec7e441392961e383ec2cf2381c12fb0119a6782a00387868",
+                "controller": "did:bba:0335f47981b5524ec7e441392961e383ec2cf2381c12fb0119a6782a00387868",
                 "publicKeyBase58": "8QUkSBbTHBw7gY1zreXNEQnKTPJRYAmCBxwkqWAMzaKi"
             }
         ],
         "service": [
             {
-                "id": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#vcs",
+                "id": "did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#vcs",
                 "type": "VerifiableCredentialService",
                 "serviceEndpoint": "https://example.com/vc/"
             },
             {
-                "id": "did:baa:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#mys",
+                "id": "did:bba:5ca5fb0b6c59f126f674eb504b7302c69ede9cf431d01dba07809314302e565f#mys",
                 "type": "MyService",
                 "serviceEndpoint": "https://my.domain.com/mys/",
                 "prop": "an additional custom property"
