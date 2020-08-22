@@ -2,7 +2,7 @@
 
 A library for DID Document creation.
 
-The purpose of this library is to assist in the creation of DID documents that comply with the decentralized identifier [specification](https://www.w3.org/TR/2020/WD-did-core-20200723/).
+The purpose of this library is to assist in the creation process of DID documents that comply with the decentralized identifier [specification](https://www.w3.org/TR/2020/WD-did-core-20200723/).
 
 
 ## Table of Contents
@@ -28,7 +28,7 @@ The purpose of this library is to assist in the creation of DID documents that c
 
 ## Security
 
-The DIDDocKey module uses [Digital Bazaars](https://github.com/digitalbazaar) [crypto-ld](https://github.com/digitalbazaar/crypto-ld) library for key handling. The key material exported by DIDDocKeys `exportKeyMaterial` function is compatible to the key material exported by [LDKeyPairs](https://github.com/digitalbazaar/crypto-ld/blob/master/lib/LDKeyPair.js) `export` function. The generated keys can later be used within Digital Bazaars crypto suit.
+The DIDDocKey module uses [Digital Bazaars](https://github.com/digitalbazaar) [crypto-ld](https://github.com/digitalbazaar/crypto-ld) library for key management. The key material exported by DIDDocKey's `exportKeyMaterial` function is compatible with the key material exported by [LDKeyPairs](https://github.com/digitalbazaar/crypto-ld/blob/master/lib/LDKeyPair.js) `export` function. The generated keys can later be used within Digital Bazaars crypto suite.
 
 crypto-ld is licensed under the [new BSD License (3-clause)](https://github.com/digitalbazaar/crypto-ld/blob/master/LICENSE).
 
