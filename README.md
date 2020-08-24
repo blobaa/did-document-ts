@@ -2,7 +2,7 @@
 
 A library for DID Document creation.
 
-The purpose of this library is to assist in the creation process of DID documents that comply with the decentralized identifier [specification](https://www.w3.org/TR/2020/WD-did-core-20200723/).
+The purpose of this library is to assist in the creation process of DID documents that comply with the decentralized identifier [specification](https://www.w3.org/TR/2020/WD-did-core-20200723/). It is also suitable to assist in the creation process of DID document templates, which are used by the [bba DID method](https://github.com/blobaa/bba-did-method-specification).
 
 
 ## Table of Contents
@@ -351,8 +351,21 @@ createDIDDocumentTemplate();
 
 
 ## API
+TBD
+<!-- The library provides the following modules.
 
-TODO: add API description
+### DIDDocKey
+
+The `DIDDocKey` module lets you create and import DID conformal key pairs. At the current state, `RsaVerificationKey2018` and `Ed25519VerificationKey2018` key types are supported.
+
+
+
+export class DIDDocKey extends CryptoLdKey {}
+export class DIDDocRelationship extends VerificationRelationship {}
+export class DIDDocService extends Service {}
+export class DIDDocument extends Document {} -->
+
+
 
 
 ## Contributing
