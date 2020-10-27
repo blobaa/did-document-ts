@@ -35,6 +35,6 @@
     "typescript": "^3.7.3"
   },
   "dependencies": {
-    "crypto-ld": "^3.8.0"
+    "crypto-ld": "^3.9.0"
   }
 }
